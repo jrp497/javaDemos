@@ -1,0 +1,122 @@
+/////main
+
+
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using ConsoleApplication3;
+
+namespace ConsoleApplication4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ArrayList arrlist = new ArrayList();
+
+            arrlist.Add(1);
+            arrlist.Add(2);
+            arrlist.Add(3);
+
+            foreach (int val in arrlist)
+                Console.WriteLine(val);
+            arrlist.Remove(2);
+
+            foreach (int val in arrlist)
+                Console.WriteLine(val);
+
+
+        }
+    }
+}
+
+
+
+/////class
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication3
+{
+    class employee 
+    {
+        int id;
+        string name;
+        DateTime doj;
+
+        public employee()
+        {
+        }
+
+        public employee(int id, string name, DateTime doj)
+        {
+            this.doj = doj;
+            this.name = name;
+            this.id = id;
+        }
+
+
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+            }
+        }
+
+
+
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
+        }
+
+
+
+
+        public DateTime Doj
+        {
+            get
+            {
+                return doj;
+            }
+            set
+            {
+                doj = value;
+            }
+        }
+
+
+
+
+        public void display()
+        {
+
+        }
+
+
+
+
+    }
+}
+

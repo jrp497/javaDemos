@@ -1,0 +1,98 @@
+1
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("enter the no of students");
+            int n = Convert.ToInt16(Console.ReadLine());
+
+            int totalsize = n * 4;
+        
+            string[] a=new string[totalsize];
+            
+            student s1 = new student();
+
+            for (int i = 0; i < totalsize; i++)
+            {
+                s1.getdata();
+                a[i] = s1.name;
+                i++;
+                a[i] =Convert.ToString( s1.age);
+                i++; 
+                a[i] = s1.address;
+                i++; 
+                a[i] =Convert.ToString( s1.percentage);
+                
+
+            }
+
+            for(int j=0;j<totalsize;j++)
+
+            {
+                s1.name = a[j];
+                j++;
+                s1.age =Convert.ToInt16(a[j]);
+                j++;
+                s1.address = a[j];
+                j++;
+                s1.percentage =Convert.ToDouble(a[j]);
+                
+                s1.displaydata();
+            }                     
+        }
+
+    }
+ 
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class student
+    {
+        public string name;
+        public int age,count=1,count2=1;
+        public string address;
+        public double percentage;
+        public void getdata()
+        {
+            Console.WriteLine("enter the details of student "+count+"\n");
+            Console.WriteLine("Name: ");
+            name = Console.ReadLine();
+            Console.WriteLine("Age: ");
+            age = Convert.ToInt16(Console.ReadLine());
+            Console.WriteLine("Address: ");
+            address = Console.ReadLine();
+            Console.WriteLine("Percentage: ");
+            percentage = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("\n\n");
+            count++;
+        }
+        public void savedata()
+        {
+            
+        }
+        public void displaydata()
+        {
+            Console.WriteLine("Student "+count2);
+            Console.WriteLine(" Name: "+name + "\n Address: " + address + "\n Age: " + age + "\n Percentage: " + percentage+"\n\n\n");
+            count2++;
+        }
+
+    }
+}

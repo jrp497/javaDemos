@@ -1,0 +1,314 @@
+///class
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication2
+{
+   static class Calculation
+    {
+        static public double add(double a, double b)
+        {
+            return (a + b);
+        }
+        public static double sub(double a, double b)
+        {
+            return (a - b);
+        }
+        public static double mul(double a, double b)
+        {
+            return (a * b);
+        }
+        public static double div(double a, double b)
+        {
+            return (a / b);
+        }
+        public static double rem(double a, double b)
+        {
+            return (a % b);
+        }
+    }
+}
+
+
+
+////main
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("enter two numbers:");
+            double a = Convert.ToDouble(Console.ReadLine());
+            double b = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("enter choice 1.add, 2.sub, 3.multiply, 4.division, 5.remainder");
+            int c=Convert.ToInt16(Console.ReadLine());
+
+            switch (c)
+            {
+                case 1:
+                    {
+                       Console.WriteLine("Addition is: "+Calculation.add(a,b));
+                       break;
+                    }
+                case 2:
+                    {
+                        Console.WriteLine("Subtraction is: "+Calculation.sub(a, b));
+                        break;
+                    }
+                case 3:
+                    {
+                        Console.WriteLine("Product is: "+Calculation.mul(a, b));
+                        break;
+                    }
+                case 4:
+                    {
+                        Console.WriteLine("Division is: "+Calculation.div(a, b));
+                        break;
+                    }
+                case 5:
+                    {
+                        Console.WriteLine("Remainder is: "+Calculation.rem(a, b));
+                        break;
+                    }
+                default:
+                        
+                    {
+                        Console.WriteLine("enter correct choice");
+                        break;
+                    }
+           
+            }
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+to access non static members of the class you need to initialize an object.
+
+
+
+/////class
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication2
+{
+    class Calculation
+    {
+        static public double add(double a, double b)
+        {
+            return (a + b);
+        }
+        public  double sub(double a, double b)
+        {
+            return (a - b);
+        }
+        public static double mul(double a, double b)
+        {
+            return (a * b);
+        }
+        public static double div(double a, double b)
+        {
+            return (a / b);
+        }
+        public static double rem(double a, double b)
+        {
+            return (a % b);
+        }
+    }
+}
+
+
+
+
+
+
+
+/////main
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("enter two numbers:");
+            double a = Convert.ToDouble(Console.ReadLine());
+            double b = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("addition is: "+Calculation.add(a,b));
+
+            Calculation s= new Calculation();
+            Console.WriteLine("subtraction is: "+s.sub(a,b));
+
+           
+            
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///static part 2
+///class
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication2
+{
+    class employee
+    {
+        int id;
+        static int generateid=1;
+        
+        //int id=0;
+        string name;
+
+
+        public employee()
+        {
+        }
+
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+            }
+
+        }
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value.ToUpper();
+            }
+        }
+
+        public employee(string name)
+        {
+            id = generateid++;
+            //id++;
+            this.name = name;
+        }
+     
+    }
+}
+
+
+
+
+
+////main
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            employee e1 = new employee();
+
+            Console.WriteLine("enter the name of employee: ");
+            e1.Name=Console.ReadLine();
+            
+            Console.WriteLine("enter the id of employee: ");
+            e1.Id =Convert.ToInt32(Console.ReadLine());
+
+
+            Console.WriteLine("\n\n"+e1.Name);
+            Console.WriteLine(e1.Id);
+
+            employee e2 = new employee("jay");
+            employee e3 = new employee("pankaj");
+            employee e4 = new employee("vaibhav");
+            Console.WriteLine("\n\n"+e2.Id+" "+e2.Name);
+            Console.WriteLine(e3.Id + " " + e3.Name);
+            Console.WriteLine(e4.Id + " " + e4.Name);
+
+        }
+    }
+}
+
+
+
+
+

@@ -1,0 +1,190 @@
+/////class
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication3
+{
+    class employee 
+    {
+        int id;
+        string name;
+        DateTime doj;
+
+        public employee()
+        {
+        }
+
+        public employee(int id, string name, DateTime doj)
+        {
+            this.doj = doj;
+            this.name = name;
+            this.id = id;
+        }
+
+
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+            }
+        }
+
+
+
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
+        }
+
+
+
+
+        public DateTime Doj
+        {
+            get
+            {
+                return doj;
+            }
+            set
+            {
+                doj = value;
+            }
+        }
+
+
+
+
+        public void display()
+        {
+
+        }
+
+
+
+
+    }
+}
+
+
+
+
+
+/////main
+
+
+
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using ConsoleApplication3;
+
+namespace ConsoleApplication4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ArrayList arrlist = new ArrayList();
+
+            string choice;
+
+            /*arrlist.Add(1);
+            arrlist.Add(2);
+            arrlist.Add(3);
+
+            foreach (int val in arrlist)
+                Console.WriteLine(val);
+            arrlist.Remove(2);
+
+            foreach (int val in arrlist)
+                Console.WriteLine(val);
+            */
+
+            do
+            {
+                Console.WriteLine("enter your option");
+                Console.WriteLine("1. add employee");
+                Console.WriteLine("2. view all employee");
+                Console.WriteLine("3. delete employee");
+                Console.WriteLine("4. change employee doj");
+                Console.WriteLine("5.exit");
+                choice = Console.ReadLine();
+                switch (choice)
+                {
+
+                    case "1":
+
+                        Console.WriteLine("enter the id,name,doj of employee");
+                        int id = Convert.ToInt16(Console.ReadLine());
+                        string name = Console.ReadLine();
+                        DateTime date = Convert.ToDateTime(Console.ReadLine());
+                        employee e = new employee(id, name, date);
+                        arrlist.Add(e);
+                        break;
+
+                    case "2":
+                        foreach (employee emp in arrlist)
+                        {
+                            Console.WriteLine("name is: " + emp.Name);
+                            Console.WriteLine("id is: " + emp.Id);
+                            Console.WriteLine("doj is: " + emp.Doj);
+                        }
+                        break;
+
+
+                    case "3":
+
+                        Console.WriteLine("enter id");
+                        id = Convert.ToInt16(Console.ReadLine());
+                        foreach (employee emp in arrlist)
+                        {
+                            if (emp.Id == id)
+                            {
+                                arrlist.Remove(emp);
+                                break;
+                            }
+                        }
+                        break;
+
+                    case "4":
+                        Console.WriteLine("enter doj,id");
+                        id = Convert.ToInt16(Console.ReadLine());
+                        date = Convert.ToDateTime(Console.ReadLine());
+
+                        foreach (employee emp in arrlist)
+                        {
+                            if (emp.Id == id)
+                            {
+                                emp.Doj = date;
+                                break;
+                            }
+                        }
+
+
+                        break;
+
+                }
+
+            } while (choice != "5");
+        }
+    }
+    
+}

@@ -1,0 +1,159 @@
+/////main
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            professor p = new professor(1, "praveen", "mtech");
+
+            university u=new university(1," GTU ");
+
+            u.takession(p);
+
+        }
+    }
+}
+
+
+
+//////professor
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class professor
+    {
+        int id;
+        string name;
+        string qualification;
+
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+            }
+
+        }
+
+        
+        
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
+        }
+        
+
+
+        public string Qualification
+        {
+            get
+            {
+                return qualification;
+            }
+            set
+            {
+                qualification = value;
+            }
+                
+        }
+
+
+        public professor(int id, string name, string qualification)
+        {
+            this.id = id;
+            this.name = name;
+            this.qualification = qualification;
+        }
+
+
+    }
+}
+
+
+
+
+//////uni
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class university
+    {
+        int id;
+        string name;
+
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+            }
+
+        }
+
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
+
+        }
+
+
+
+        public university(int id, string name)
+        {
+            this.id = id;
+            this.name=name;
+
+
+        }
+
+        public void takession(professor p)
+        {
+            Console.WriteLine(p.Name + " takes session");
+        }
+    }
+}

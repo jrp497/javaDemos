@@ -1,0 +1,271 @@
+////program
+
+
+/////main\\\\\
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+
+            iemployeemanager empmgr = new employeemanager(); //object of interface  syntax interfacename..new..classname
+
+            int i;
+
+            do
+            {
+
+                Console.WriteLine("enter your choice:");
+                Console.WriteLine("1.add employee");
+                Console.WriteLine("2.view employee");
+                Console.WriteLine("3.exit");
+                Console.WriteLine("\n");
+
+                i = Convert.ToInt16(Console.ReadLine());
+
+              switch(i)
+                {
+                
+                  case 1:
+                    {
+                        Console.WriteLine("\n");
+                        Console.WriteLine("enter the name of employee: ");
+                        string name=Console.ReadLine();
+                        Console.WriteLine("enter the id employee: ");
+                        int id=Convert.ToInt16(Console.ReadLine());
+                        Console.WriteLine("enter the date of joining: ");
+                        DateTime doj=Convert.ToDateTime(Console.ReadLine());
+                        Console.WriteLine("\n\n");
+                        iemployee emp = new employee(id,name,doj);
+                        empmgr.addemployee(emp);
+
+
+
+                        break;
+                    }
+                case 2:
+                    {
+
+                        List<iemployee> empview = empmgr.viewemployee();
+                        foreach (iemployee e in empview)
+                        {
+                            Console.WriteLine("id=" + e.Id);
+                            Console.WriteLine("name=" + e.Name);
+                            Console.WriteLine("doj=" + e.Doj);
+                            Console.WriteLine("\n\n");
+                        }
+
+
+                        break;
+                    }
+
+                }
+
+            } while (i != 3);
+
+        }
+    }
+}
+
+
+
+
+
+/////employee
+
+
+
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication3
+{
+    class employee:iemployee
+    {
+        int id;
+        string name;
+        DateTime doj;
+
+        public employee()
+        {
+        }
+
+        public employee(int id, string name, DateTime doj)
+        {
+            this.doj = doj;
+            this.name = name;
+            this.id = id;
+        }
+
+        
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+            }
+        }
+
+         
+        
+        
+        public string Name
+            {
+                get
+                {
+                    return name;
+                }
+                set
+                {
+                    name=value;
+                }
+            }
+
+
+        
+        
+        public DateTime Doj
+        {
+            get
+            {
+                return doj;
+            }
+            set
+            {
+                doj = value;
+            }
+        }
+
+
+
+
+        public void display()
+        {
+
+        }
+
+
+
+
+    }
+}
+
+
+
+
+
+//////iemployee
+
+
+
+
+////declaration\\\\
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication3
+{
+    interface iemployee
+    {
+        int Id { get; set; }
+        string Name { get; set; }
+        DateTime Doj { get; set; }
+
+    }
+}
+
+
+
+
+
+
+////iemployeemanager
+
+
+
+
+/////define a contract\\\\\\
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication3
+{
+    interface iemployeemanager
+
+    {
+        void addemployee(iemployee e);
+        List<iemployee> viewemployee();
+    }
+}
+
+
+
+
+
+
+
+///////employeemanager
+
+
+
+
+///////class to implement the contract\\\\\
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication3
+{
+    class employeemanager:iemployeemanager
+    {
+        List<iemployee> emplist = new List<iemployee>();
+        public void addemployee(iemployee e)
+        {
+            emplist.Add(e);
+        }
+        public List<iemployee> viewemployee()
+        {
+            return (emplist);
+        }
+    }
+}

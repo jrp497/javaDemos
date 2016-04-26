@@ -1,0 +1,360 @@
+basic
+
+
+
+create table table_759795(Book_Id int,Title varchar (30)
+,Publisher varchar(30) primary key(Book_Id))
+
+create table book_aut(Book_Id int,Author_Name varchar(30)
+primary key(Book_Id,Author_Name))
+
+alter table book_aut add constraint f_key foreign key
+(Book_Id) references table_759795 (Book_Id)
+
+insert into table_759795 (Book_Id)values (759795)
+
+update table_759795 set Title='harry potter'
+where Book_Id=759795
+
+update table_759795 set Title='Harry Potter',Publisher='JK Rowling'
+where Book_Id=759795
+
+select * from table_759795
+
+
+insert into table_759795 values (759257,'The Notebook','Barron')
+insert into table_759795 values (759256,'Harry Potter','Manhattan')
+update table_759795 set Title='Harry Potter',Publisher='Kaplan'
+where Book_Id=759795
+update table_759795 set Title='The Notebook',Publisher='Manhattan'
+where Book_Id=759257
+update table_759795 set Title='Fifty shades of grey',Publisher='Barron'
+where Book_Id=759259
+
+
+insert into book_aut values (759257,'Stanley')
+insert into book_aut values (759259,'JK Rowling')
+insert into book_aut values (759256,'Robert Brown')
+
+
+select * from table_759795
+select * from book_aut
+
+
+
+create table pub_759(Name varchar(20) primary key,Addres varchar(255),Phone int)
+select * from pub_759
+
+ALTER TABLE pub_759 ALTER COLUMN Name varchar(30)not null
+
+alter table pub_759 add  primary key (Name)
+
+
+insert into pub_759 values ('Manhattan','Park Street',27910342)
+insert into pub_759 values ('Kaplan','North Street',27910352)
+insert into pub_759 values ('Barron','West Street',27910392)
+alter table table_759795 add foreign key (Publisher)references
+pub_759 (Name)
+
+truncate table book_aut
+truncate table table_759795
+
+
+select * from table_759795
+select * from book_aut
+select * from pub_759
+
+
+
+
+
+
+
+
+
+
+hands on_1
+
+
+
+create table train_759795(TrainId int,TrainName varchar(30)
+,Source Varchar(30),Destination varchar(30))
+create table customer_759795(CustId int,FirstName varchar(30)
+,LastName varchar(30), Email varchar(30))
+create table tp_759795(TicketId int, CustId int, NomOfPessangers int
+,DateOfJourney datetime, TotalFare int,TrainId int)
+
+select*from train_759795
+select*from customer_759795
+select*from tp_759795 
+
+alter table train_759795 alter column TrainId int not null
+alter table train_759795 alter column TrainName varchar(30) not null
+alter table train_759795 alter column Source varchar(30) not null
+alter table train_759795 alter column Destination varchar(30) not null
+
+alter table customer_759795 alter column CustId int not null
+alter table customer_759795 alter column LastName varchar(30) not null
+alter table customer_759795 alter column Email varchar(30) not null
+
+
+alter table tp_759795 alter column TicketId int not null
+alter table tp_759795 alter column CustId int not null
+alter table tp_759795 alter column NomOfPessangers int not null
+alter table tp_759795 alter column DateOfJourney datetime not null
+alter table tp_759795 alter column TrainId int not null
+
+
+alter table tp_759795 add primary key (TicketId)
+alter table tp_759795 add foreign key
+(CustId) references customer_759795 (CustId)
+
+sp_rename 'tp_759795.TicketId','IdTicket','column'
+
+
+select IdTicket from tp_759795 order by NomOfPessangers
+
+select*from train_759795
+select*from customer_759795
+select*from tp_759795 
+
+select NomOfPessangers from tp_759795 where NomOfPessangers in(3);
+
+truncate table tp_759795
+truncate table customer_759795
+truncate table train_759795
+
+select b.FirstName from train_759795 a inner join tp_759795 c 
+on a.TrainId=c.TrainId inner join customer_759795 b 
+on b.CustId =c.CustId where Source='delhi' and Destination='mumbai'
+
+select b.FirstName, COUNT(c.CustId)as countofpass from customer_759795 b 
+inner join tp_759795 c on b.CustId=c.CustId group by b.FirstName having 
+COUNT(c.CustId)>1
+
+select COUNT(CustId)as countofp from tp_759795
+
+select * from tp_759795 inner join customer_759795 
+on tp_759795.CustId=customer_759795.CustId
+
+select*from train_759795
+select*from customer_759795
+select*from tp_759795 
+
+select COUNT(CustId)as counto, CustId from tp_759795 group by CustId;
+
+select b.FirstName from train_759795 a inner join tp_759795 c on a.TrainId=c.TrainId
+inner join customer_759795 b on b.CustId=c.CustId where Source='delhi'
+
+select c.FirstName,a.DateOfJourney from tp_759795 a join tp_759795 b 
+on a.DateOfJourney=b.DateOfJourney inner join customer_759795 c 
+on  c.CustId=b.CustId where a.CustId<>b.CustId
+
+
+alter table customer_759795 add check (Email like '%@%')
+update customer_759795 set Email='HR@tcs.com' where FirstName='suresh'
+
+select * from customer_759795 a join tp_759795 b on a.CustId=b.CustId 
+join train_759795 c on c.TrainId=b.TrainId where Email like '%@tcs.com' 
+and TrainName like '%exp'
+ 
+ 
+ 
+
+
+
+
+
+
+
+handson _2
+
+
+
+
+
+
+create table folder (folder_id int not null primary key, foldername varchar(255)not null
+,created_by varchar(255)not null, creat_date datetime not null)
+
+create table document (document_id int not null primary key,folder_id int 
+foreign key references folder(folder_id)not null,document_title varchar(255)not null,
+document_author varchar(255) not null,create_date datetime not null )
+
+create table page(page_id int not null primary key,document_id int 
+foreign key references document(document_id),page_color varchar(255) not null,
+page_height int not null, page_width int not null,page_size int not null)
+
+select * from folder
+select * from document
+select * from page
+
+alter table page add page_area as page_height*page_width
+
+
+
+alter table page add p_area int
+update page set p_area=page_height*page_width
+alter table page drop column p_area
+
+
+select AVG(page_area)as average,MIN(page_area)as minimum,
+MAX(page_area) as  maximum from page
+
+
+select a.document_id,sum(page_size)as sizeofdoc from document a join page b 
+on a.document_id=b.document_id group by a.document_id
+
+
+select a.document_title,sum(page_size)as sizeofdoc from document a join page b 
+on a.document_id=b.document_id group by a.document_title
+
+
+select * from folder
+select * from document
+select * from page
+
+alter table page add new int 
+
+update page set new=3 where page_id=2
+
+alter table page drop column new
+
+
+
+select foldername,SUM(page_size) as totalfoldersize from folder a 
+join document b on a.folder_id=b.folder_id
+join page c on c.document_id=b.document_id group by foldername
+
+select * from folder
+select * from document
+select * from page
+
+alter table folder add  check (len(foldername)>3)
+
+insert into folder values(5,'twoo','james','5/5/2014')
+
+update folder set foldername='fifth' where folder_id=5
+
+
+
+
+
+
+
+
+
+
+
+handson_4
+
+
+
+
+
+select * from bookcopy5
+select * from publisher5
+select * from bookloan5
+select * from libbranch5
+select * from borr5
+select * from bookauth5
+select* from book5
+
+select noofcopies,title,addr from book5 a join bookcopy5 b on a.bookid=b.bookid 
+join libbranch5 c on c.branchid=b.branchid where title like'Java Premiere'
+and addr like'central'
+
+
+select noofcopies,title,addr from book5 a join bookcopy5 b on a.bookid=b.bookid 
+join libbranch5 c on c.branchid=b.branchid where title like'Java Premiere'
+
+
+
+select title as books,SUM(noofcopies)as totalbooks   
+from book5 a join bookcopy5 b on a.bookid=b.bookid join libbranch5 c 
+on c.branchid=b.branchid where title in(title) group by title
+
+
+select * from bookloan5
+select * from libbranch5
+select * from borr5
+select* from book5
+select * from bookauth5
+
+
+select addr,title,name,addre from libbranch5 a join bookloan5 b 
+on a.branchid=b.branchid join borr5 c on c.cardno=b.cardno join book5 d 
+on d.bookid=b.bookid where dateout='08/25/2011' and addr like'Infocity'
+
+select addr as branch, a.branchid , COUNT(addr)as totalbooksout from libbranch5 a 
+join bookloan5 b on a.branchid=b.branchid group by addr,a.branchid
+
+select name,addre,COUNT(b.cardno)as numberofbooks from bookloan5 a join borr5 b 
+on a.cardno=b.cardno group by name ,addre,b.cardno 
+
+select name,addre,COUNT(b.cardno)as numberofbooks from bookloan5 a join borr5 b 
+on a.cardno=b.cardno group by name ,addre,b.cardno having count(b.cardno)>2
+
+
+
+
+create procedure sp_ramdas
+as
+begin
+
+select authname,title,noofcopies,addr from bookauth5 a join book5 b 
+on a.bookid=b.bookid join bookcopy5 c on c.bookid=b.bookid join libbranch5 d 
+on d.branchid=c.branchid where authname like 'Ramdas' and addr like 'Central'
+
+end
+go
+
+
+select * from borr5 a left join bookloan5 b on a.cardno=b.cardno where datein is null
+
+
+exec sp_ramdas
+
+
+
+
+
+
+
+hands on..3...
+
+
+
+
+
+
+
+create table semester_1(semester_id int primary key,semester_name varchar(50) not null,
+start_date datetime not null,end_date datetime not null)
+
+create table batch_1(batch_id int primary key,semester_id int foreign key references
+semester_1(semester_id),batch_name varchar(50) not null,session_room varchar(50))
+
+create table associate_1(associate_id int primary key,associate_name varchar(100)
+not null,batch_id int references batch_1(batch_id)not null, contact varchar(10),
+joining_date datetime not null,induction_results int check(induction_results<=100),
+stream_results int check(stream_results<=100))
+
+insert into semester_1 values(4,2,'4/9/2014','10/9/2014')
+insert into batch_1 values(4,3,'A4','F105')
+insert into associate_1 values(6,'Aston','3','909905','2/5/2014',76,99,2)
+
+select*from semester_1
+select*from batch_1
+select*from associate_1 
+
+alter table associate_1 add roommate_id int
+update associate_1 set roommate_id=3 where associate_id=4
+
+
+select d.associate_name,d.roommate_id from associate_1 c join associate_1 d 
+on c.roommate_id=d.roommate_id where d.batch_id=3 group by d.associate_name,
+d.roommate_id
+
+select * from batch_1 a  join associate_1 b on a.batch_id=b.batch_id 
+where batch_name like 'A1' and a.batch_name<>b.batch_name

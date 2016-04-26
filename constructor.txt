@@ -1,0 +1,170 @@
+//class
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class employee
+    {
+        int id;
+        string name;
+        double basicpay;
+        double upraisal;
+        double perforpay=100;
+
+        public employee()
+        {
+        }
+
+        public employee(int id,string name, double basic)
+        {
+            basicpay = basic;
+            this.name = name.ToUpper();
+            this.id = id;
+
+
+        }
+
+
+
+        
+
+
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value.ToUpper();
+            }
+        }
+
+
+
+
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    Console.WriteLine("enter the correct value");
+
+                }
+                else
+                id = value;
+            }
+        }
+
+
+        public double Basicpay
+        {
+            get
+            {
+                return basicpay;
+            }
+            set
+            {
+                basicpay = value;
+            }
+        }
+
+
+        public double Upraisal
+        {
+            get
+            {
+                return upraisal;
+            }
+            set
+            {
+                upraisal = value;
+            }
+        }
+
+
+
+        public double grosspay()
+        {
+            return (basicpay + (.20 * basicpay) + (.15 * basicpay) + perforpay + upraisal);
+        }
+
+    }
+}
+
+
+
+
+
+
+
+
+//main
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            employee emp = new employee();
+
+            employee emp1=new employee(20,"jay",500);
+
+            Console.WriteLine("enter name of employee: ");
+            emp.Name = Console.ReadLine();
+            
+
+            Console.WriteLine("enter id: ");
+            emp.Id =Convert.ToInt32(Console.ReadLine());
+            
+
+            Console.WriteLine("enter basic pay: ");
+            emp.Basicpay =Convert.ToDouble(Console.ReadLine());
+
+            emp.Upraisal = 500;
+            emp1.Upraisal = 500;
+            
+            double pay = emp.grosspay();
+            double pay1 = emp1.grosspay();
+
+            Console.WriteLine("\n");
+            Console.WriteLine("Name: " + emp.Name);
+            Console.WriteLine("Emp id: "+emp.Id);
+            Console.WriteLine("total pay is: "+pay);
+
+            Console.WriteLine("\n\n");
+
+            Console.WriteLine("Name: " + emp1.Name);
+            Console.WriteLine("Emp id: " + emp1.Id);
+            Console.WriteLine("total pay is: " + pay1);
+            
+            Console.WriteLine("\n\n");
+
+        }
+    }
+}

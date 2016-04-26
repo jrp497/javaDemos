@@ -1,0 +1,398 @@
+////main
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+           
+            vehicle v = new vehicle();
+            Console.WriteLine(v.features());
+
+
+            Console.WriteLine("enter type of vehicle car or bike:");
+            v.Type = Console.ReadLine();
+
+            Console.WriteLine("enter number of wheels");
+            v.Nofwheels =Convert.ToInt16 (Console.ReadLine());
+
+            Console.WriteLine("enter type of body: ");
+            v.Body = Console.ReadLine();
+
+            //Console.WriteLine(v.senddata());
+
+
+            //vehicle v1 = new vehicle("car",4,"metal");
+            //sportscar s = new sportscar();
+            //s.data();
+
+           
+
+            if (v.Type.Equals("bike"))
+            {
+                Console.WriteLine(v.senddata() + "\n" + v.borc1());
+            }
+            else if (v.Type.Equals("car"))
+            {
+                Console.WriteLine(v.senddata() + "\n" );
+            }
+            else
+            {
+                Console.WriteLine("error");
+            }
+
+            //Console.WriteLine(v1.senddata());
+
+            
+
+
+         
+
+        }
+    }
+}
+
+
+
+
+
+///////vehicle
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication2
+{
+    class vehicle
+    {
+        string type;
+        int nofwheels;
+        string body;
+
+        public virtual string features()
+        {
+           return  ("used for transpotration: ");
+            
+        }
+
+        public string borc1()
+        {
+            //biKe b1 = new biKe("disk",1000);
+            biKe b2 = new biKe();
+           
+
+            Console.WriteLine("enter brake:");
+            b2.Brakes = Console.ReadLine();
+
+            Console.WriteLine("enter esize:");
+            b2.Esize = Convert.ToInt16(Console.ReadLine());
+
+            return( b2.senddata()+b2.features());
+        }
+
+        public void borc2()
+        {
+            car c1 = new car();
+            c1.features();
+
+            Console.WriteLine("enter type:");
+            c1.Type = Console.ReadLine();
+
+            Console.WriteLine("enter esize:");
+            c1.Esize = Convert.ToInt16(Console.ReadLine());
+            c1.getdata();
+
+
+
+        }
+
+        public vehicle()
+        {
+        }
+        public vehicle(string type,int nofwheels,string body)
+        {
+            this.type = type;
+            this.nofwheels = nofwheels;
+            this.body = body;
+        }
+
+        public string Type
+        {
+            get
+            {
+                return type;
+            }
+            set
+            {
+                type = value;
+            }
+        }
+
+
+        public int Nofwheels
+        {
+            get
+            {
+                return nofwheels;
+            }
+            set
+            {
+                nofwheels = value;
+            }
+        }
+
+
+        public string Body
+        {
+            get
+            {
+                return body;
+            }
+            set
+            {
+                body = value;
+            }
+        }
+
+        public string senddata()
+        {
+            return ("vehical specificatios are:\n"+type + "\n" + nofwheels + "\n" + body);
+        }
+
+    }
+}
+
+
+
+
+////////car
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication2
+{
+    class car:vehicle
+    {
+        string type;
+        double esize;
+
+         public car()
+        {
+        }
+        public car(string type,double esize)
+        {
+            this.Type =type;
+            this.Esize = esize;
+        }
+
+        public string Type
+        {
+            get
+            {
+                return type;
+            }
+            set
+            {
+                type = value;
+            }
+        }
+
+
+        public double Esize
+        {
+            get
+            {
+                return esize;
+            }
+            set
+            {
+                esize = value;
+            }
+        }
+
+
+
+        public void getdata()
+        {
+            if (type.Equals("sports"))
+            {
+                sportscar sc1 = new sportscar();
+                
+                Console.WriteLine("enter the cost:");
+                sc1.Cost = Convert.ToDouble(Console.ReadLine());
+                
+                sc1.printdata1();
+
+
+            }
+            else if (type.Equals("sedan"))
+            {
+                sportscar sc2 = new sportscar();
+                
+                Console.WriteLine("enter the cost:");
+                sc2.Cost = Convert.ToDouble(Console.ReadLine());
+
+                sc2.printdata2();
+
+            }
+        }
+
+
+
+        public void features()
+        {
+            Console.WriteLine("used for family: ");
+        }
+
+       
+
+    }
+}
+
+
+
+
+
+
+
+////////////bike
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication2
+{
+    class biKe:vehicle
+    {
+        string brakes;
+        double esize;
+
+        public biKe()
+        {
+        }
+        public biKe(string brakes,double esize)
+        {
+            this.brakes = brakes;
+            this.esize = esize;
+        }
+
+        public string Brakes
+        {
+            get
+            {
+                return brakes;
+            }
+            set
+            {
+                brakes = value;
+            }
+        }
+
+
+        public double Esize
+        {
+            get
+            {
+                return esize;
+            }
+            set
+            {
+                esize = value;
+            }
+        }
+
+        public override string features()
+        {
+            return ("used for 2 persons: ");
+
+        }
+        
+
+        public string senddata()
+        {
+
+            return (brakes + " " + esize);
+        }
+    }
+}
+
+
+//////////sports car
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication2
+{
+    class sportscar:car
+    {
+        double cost;
+
+        public double Cost
+        {
+            get
+            {
+                return cost;
+            }
+            set
+            {
+                cost=value;
+            }
+        }
+
+        public void printdata1()
+        {
+            Console.WriteLine("entered car is sports car and costing is: "+cost);
+        }
+        public void printdata2()
+        {
+            Console.WriteLine("entered car is sedan and costing is: " + cost);
+        }
+
+
+        public void feature1()
+        {
+            Console.WriteLine("used for racing: ");
+            printdata1();
+        }
+
+        public void feature2()
+        {
+            Console.WriteLine("used for racing: ");
+            printdata2();
+        }
+
+        public void data()
+        {
+            Console.WriteLine("sports car");
+        }
+
+
+    }
+}
