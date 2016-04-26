@@ -1,0 +1,26 @@
+Function Overloading:
+
+	two function with same name.
+
+	Signature must be different
+
+	Signature number , type and sequence arguements
+
+void add(int a,int b);
+void add(int a,int b,int c);
+void add(int a,float b);
+void add(float a,int b);
+
+//Constructors:
+
+they have name same as the class
+not return values
+can take arguements / overloaded
+automatically when the object of the class is created.
+
+no destructors
+
+Garbage Collection Programme
+finalize()
+
+memory address of the object through which the function has been called

@@ -1,0 +1,7 @@
+bank 
+acc_no,holder,bal
+constructor - 100,abc,5000;
+paramterised bank(acc_no,name,int bal)
+withdraw(int amount); check balance;
+
+deposit(int amount); new balance

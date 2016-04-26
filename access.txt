@@ -1,0 +1,15 @@
+				private	default	protected	public
+same class		y		y		y			y
+same package
+
+different class n		y		y			y
+same package
+
+sub class		n		y		y			y
+same package
+
+sub class		n		n		y			y
+different packagen
+
+different class	n		n		n			y
+different package
